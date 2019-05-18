@@ -1,4 +1,4 @@
-﻿Public Class Form1
+Public Class Form1
 
     Class Game
 
@@ -14,7 +14,7 @@
 
     End Class
 
-    Class gameManager
+    Class gameEngine
 
     End Class
 
