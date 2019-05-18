@@ -39,7 +39,6 @@
                 Next
             Next
         End Sub
-
     End Class
 
     Class dataManager
@@ -51,12 +50,15 @@
     End Class
 
     Class Tile
-
+        'Work on this
     End Class
 
     Class Map
         Public x() As Array
+        'Work on this
     End Class
+
+    'Also can you make the text files for the map
 
     Class Player
 
