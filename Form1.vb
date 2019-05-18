@@ -6,8 +6,6 @@
     Class viewManager
 
 
-
-
     End Class
 
     Class dataManager
@@ -19,8 +17,14 @@
     End Class
 
     Class Tile
-
+        'Work on this
     End Class
+
+    Class Map
+        'Work on this
+    End Class
+
+    'Also can you make the text files for the map
 
     Class Player
 
