@@ -54,7 +54,19 @@
     End Class
 
     Class Map
-        Public x() As Array
+        Public x(134) As Array
+        Sub Fill()
+            For i = 1 To 134
+                Dim temp(8) As Tile
+                For j = 1 To 9
+                    temp(j) = New Tile
+                Next
+                x(i) = temp
+            Next
+        End Sub
+
+
+
         'Work on this
     End Class
 
