@@ -22,6 +22,10 @@
 
     End Class
 
+    Class Map
+
+    End Class
+
     Class Player
 
     End Class
