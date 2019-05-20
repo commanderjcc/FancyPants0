@@ -24,9 +24,9 @@
     End Structure
 
     Class Game
-        Dim data As dataManager
-        Dim view As viewManager
-        Dim engine As gameEngine
+        Public data As dataManager
+        Public view As viewManager
+        Public engine As gameEngine
 
         Sub New(dataLocation As String)
             data = New dataManager(dataLocation)
@@ -82,40 +82,57 @@
         Function isXCollisionRight(player As Player) As Boolean
             Dim temp As Tile
             temp = dataSource.map.getCollisionTile(player.dimensions)(2)
+            If player.dimensions.x + player.dimensions.width >= temp.dimensions.x Then
+                Return True
+            End If
+            Return False
         End Function
 
         Function isYCollisionUp(player As Player) As Boolean
-
+            Dim temp As Tile
+            temp = dataSource.map.getCollisionTile(player.dimensions)(0)
+            If player.dimensions.y <= temp.dimensions.y + temp.dimensions.height Then
+                Return True
+            End If
+            Return False
         End Function
 
         Function isXcollisionLeft(player As Player) As Boolean
-
+            Dim temp As Tile
+            temp = dataSource.map.getCollisionTile(player.dimensions)(3)
+            If player.dimensions.x <= temp.dimensions.x + temp.dimensions.width Then
+                Return True
+            End If
+            Return False
         End Function
 
         Function isYCollisionDown(player As Player) As Boolean
-
+            Dim temp As Tile
+            temp = dataSource.map.getCollisionTile(player.dimensions)(1)
+            If player.dimensions.y + player.dimensions.height >= temp.dimensions.y Then
+                Return True
+            End If
+            Return False
         End Function
     End Class
 
     Class Tile
-        'Work on this
+        Public dimensions As dimensions
     End Class
 
     Class Map
         Public mapImage As Image
-        Dim currentOffset As Single
         Public x(134) As Array
 
         Sub New(mapFolderLocation As String)
-            currentOffset = 0
             Fill(mapFolderLocation + "\map.txt")
         End Sub
 
         Function getCollisionTile(playerDimensions As dimensions) As Tile()
             Dim centerX As Integer
             Dim centerY As Integer
-            centerX = 9 + Int(currentOffset / 65)
-            centerY = Int(playerDimensions.y / 65)
+            centerX = Math.Floor((playerDimensions.x - 13) / 27.8)
+            centerY = Math.Floor((355 - playerDimensions.y) / 27.6)
             Dim temp(3) As Tile
             temp(0) = x(centerX)(centerY + 1)
             temp(1) = x(centerX)(centerY - 1)
