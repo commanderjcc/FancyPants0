@@ -82,7 +82,7 @@
         Function isXCollisionRight(player As Player) As Boolean
             Dim temp As Tile
             temp = dataSource.map.getCollisionTile(player.dimensions)(2)
-            If player.dimensions.x + player.dimensions.width >= temp.dimensions.x Then
+            If temp.isSolid And player.dimensions.x + player.dimensions.width >= temp.dimensions.x Then
                 Return True
             End If
             Return False
@@ -91,7 +91,7 @@
         Function isYCollisionUp(player As Player) As Boolean
             Dim temp As Tile
             temp = dataSource.map.getCollisionTile(player.dimensions)(0)
-            If player.dimensions.y <= temp.dimensions.y + temp.dimensions.height Then
+            If temp.isSolid And player.dimensions.y <= temp.dimensions.y + temp.dimensions.height Then
                 Return True
             End If
             Return False
@@ -100,7 +100,7 @@
         Function isXcollisionLeft(player As Player) As Boolean
             Dim temp As Tile
             temp = dataSource.map.getCollisionTile(player.dimensions)(3)
-            If player.dimensions.x <= temp.dimensions.x + temp.dimensions.width Then
+            If temp.isSolid And player.dimensions.x <= temp.dimensions.x + temp.dimensions.width Then
                 Return True
             End If
             Return False
@@ -109,7 +109,7 @@
         Function isYCollisionDown(player As Player) As Boolean
             Dim temp As Tile
             temp = dataSource.map.getCollisionTile(player.dimensions)(1)
-            If player.dimensions.y + player.dimensions.height >= temp.dimensions.y Then
+            If temp.isSolid And player.dimensions.y + player.dimensions.height >= temp.dimensions.y Then
                 Return True
             End If
             Return False
@@ -118,6 +118,7 @@
 
     Class Tile
         Public dimensions As dimensions
+        Public isSolid As Boolean
     End Class
 
     Class Map
@@ -164,7 +165,7 @@
         Public name As String
 
         Sub New(images As Image(), health As Single, name As String)
-            MyBase.New(images, health, 0, New dimensions(0, 0, 45, 56))
+            MyBase.New(images, health, 0, New dimensions(152, 300, 45, 56))
             Me.name = name
         End Sub
     End Class
@@ -216,7 +217,7 @@
         centerY = Math.Floor((355 - y) / 27.6)
         Label1.Text = centerX
         Label2.Text = centerY
-        Label3.Text = y
+        Label3.Text = x
     End Sub
 End Class
 
