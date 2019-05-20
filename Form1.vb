@@ -54,7 +54,19 @@
     End Class
 
     Class Map
-        Public x() As Array
+        Public x(134) As Array
+        Sub Fill()
+            For i = 1 To 134
+                Dim temp(8) As Tile
+                For j = 1 To 9
+                    temp(j) = New Tile
+                Next
+                x(i) = temp
+            Next
+        End Sub
+
+
+
         'Work on this
     End Class
 
@@ -68,7 +80,17 @@
 
     End Class
 
-
+    Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.A Then
+            If PictureBox1.Left <> 2 Then
+                PictureBox1.Left += 5
+            End If
+        ElseIf e.KeyCode = Keys.d Then
+            If PictureBox1.Right >= -55 Then
+                PictureBox1.Left -= 5
+            End If
+        End If
+    End Sub
 End Class
 
 
