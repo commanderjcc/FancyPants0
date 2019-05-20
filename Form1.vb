@@ -2,7 +2,7 @@
     Dim k As Integer
     Public instalLocation As String
     Public appGame As Game
-    Structure dimensions
+    Public Structure dimensions
         Public x As Single, y As Single, width As Single, height As Integer, xGrid As Integer, yGrid As Single, xLast As Single, yLast As Single
 
         Sub New(x As Single, y As Single, xGrid As Integer, yGrid As Integer)
@@ -16,12 +16,18 @@
             Me.yLast = 0
         End Sub
 
+        Sub New(x, y, width, height)
+            Me.x = x
+            Me.y = y
+            Me.height = height
+            Me.width = width
+        End Sub
     End Structure
 
     Class Game
-        Dim data As dataManager
-        Dim view As viewManager
-        Dim engine As gameEngine
+        Public data As dataManager
+        Public view As viewManager
+        Public engine As gameEngine
 
         Sub New(dataLocation As String)
             data = New dataManager(dataLocation)
@@ -74,10 +80,46 @@
             Me.view = view
         End Sub
 
+        Function isXCollisionRight(player As Player) As Boolean
+            Dim temp As Tile
+            temp = dataSource.map.getCollisionTile(player.dimensions)(2)
+            If temp.isSolid And player.dimensions.x + player.dimensions.width >= temp.dimensions.x Then
+                Return True
+            End If
+            Return False
+        End Function
+
+        Function isYCollisionUp(player As Player) As Boolean
+            Dim temp As Tile
+            temp = dataSource.map.getCollisionTile(player.dimensions)(0)
+            If temp.isSolid And player.dimensions.y <= temp.dimensions.y + temp.dimensions.height Then
+                Return True
+            End If
+            Return False
+        End Function
+
+        Function isXcollisionLeft(player As Player) As Boolean
+            Dim temp As Tile
+            temp = dataSource.map.getCollisionTile(player.dimensions)(3)
+            If temp.isSolid And player.dimensions.x <= temp.dimensions.x + temp.dimensions.width Then
+                Return True
+            End If
+            Return False
+        End Function
+
+        Function isYCollisionDown(player As Player) As Boolean
+            Dim temp As Tile
+            temp = dataSource.map.getCollisionTile(player.dimensions)(1)
+            If temp.isSolid And player.dimensions.y + player.dimensions.height >= temp.dimensions.y Then
+                Return True
+            End If
+            Return False
+        End Function
     End Class
 
     Class Tile
-        'Work on this
+        Public dimensions As dimensions
+        Public isSolid As Boolean
     End Class
 
     Class Map
@@ -87,6 +129,20 @@
         Sub New(mapFolderLocation As String)
             Fill(mapFolderLocation + "\map.txt")
         End Sub
+
+        Function getCollisionTile(playerDimensions As dimensions) As Tile()
+            Dim centerX As Integer
+            Dim centerY As Integer
+            centerX = Math.Floor((playerDimensions.x - 13) / 27.8)
+            centerY = Math.Floor((355 - playerDimensions.y) / 27.6)
+            Dim temp(3) As Tile
+            temp(0) = x(centerX)(centerY + 1)
+            temp(1) = x(centerX)(centerY - 1)
+            temp(2) = x(centerX + 1)(centerY)
+            temp(3) = x(centerX - 1)(centerY)
+            Return temp
+        End Function
+
 
         Sub Fill(maplocation As String)
             For i = 1 To 134
@@ -110,7 +166,7 @@
         Public name As String
 
         Sub New(images As Image(), health As Single, name As String)
-            MyBase.New(images, health, 0)
+            MyBase.New(images, health, 0, New dimensions(152, 300, 45, 56))
             Me.name = name
         End Sub
     End Class
@@ -119,11 +175,17 @@
         Public images() As Image
         Public health As Single
         Public points As Single
+        Public dimensions As dimensions
 
-        Sub New(images As Image(), health As Single, points As Single)
+        Function testCollision(map As Map)
+
+        End Function
+
+        Public Sub New(images As Image(), health As Single, points As Single, dimensions As dimensions)
             Me.images = images
             Me.health = health
             Me.points = points
+            Me.dimensions = dimensions
         End Sub
     End Class
 
@@ -174,8 +236,17 @@
         End If
     End Sub
 
-    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
 
+    Private Sub Form1_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove, PictureBox1.MouseMove
+        Dim x As Single = e.Location.X
+        Dim y As Single = e.Location.Y
+        Dim centerX As Integer
+        Dim centerY As Integer
+        centerX = Math.Floor((x - 13) / 27.8)
+        centerY = Math.Floor((355 - y) / 27.6)
+        Label1.Text = centerX
+        Label2.Text = centerY
+        Label3.Text = x
     End Sub
 End Class
 
