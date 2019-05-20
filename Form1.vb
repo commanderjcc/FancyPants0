@@ -83,11 +83,11 @@
     Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.A Then
             If PictureBox1.Left <> 2 Then
-                PictureBox1.Left += 5
+                PictureBox1.Left += 2
             End If
         ElseIf e.KeyCode = Keys.d Then
             If PictureBox1.Right >= -55 Then
-                PictureBox1.Left -= 5
+                PictureBox1.Left -= 2
             End If
         End If
     End Sub
