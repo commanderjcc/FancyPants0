@@ -189,6 +189,18 @@
         instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
 
     End Sub
+
+    Private Sub Form1_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove, PictureBox1.MouseMove
+        Dim x As Single = e.Location.X
+        Dim y As Single = e.Location.Y
+        Dim centerX As Integer
+        Dim centerY As Integer
+        centerX = Math.Floor((x - 13) / 27.8)
+        centerY = Math.Floor((355 - y) / 27.6)
+        Label1.Text = centerX
+        Label2.Text = centerY
+        Label3.Text = y
+    End Sub
 End Class
 
 
