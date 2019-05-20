@@ -91,7 +91,7 @@
             For i = 1 To 134
                 Dim temp(8) As Tile
                 For j = 1 To 9
-                    temp(j) = New Tile
+                    temp(j - 1) = New Tile
                 Next
                 x(i) = temp
             Next
@@ -129,17 +129,17 @@
     Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.A Then
             If PictureBox1.Left <> 2 Then
-                PictureBox1.Left += 5
+                PictureBox1.Left += 2
             End If
         ElseIf e.KeyCode = Keys.D Then
             If PictureBox1.Right >= -55 Then
-                PictureBox1.Left -= 5
+                PictureBox1.Left -= 2
             End If
         End If
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        game = New Game(instalLocation)
+        appGame = New Game(instalLocation)
 
         'instalLocation = ""
         instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
