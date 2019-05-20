@@ -1,4 +1,5 @@
 ﻿Public Class Form1
+    Dim k As Integer
     Public instalLocation As String
     Public appGame As Game
     Public Structure dimensions
@@ -191,23 +192,51 @@
 
     Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.A Then
-            If PictureBox1.Left <> 2 Then
-                PictureBox1.Left += 2
+            If PictureBox1.Right > -1 And PictureBox1.Right < 5854 Then
+                k = k + 1
+                If k Mod 2 = 0 Then
+                    PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\rightstand.png"
+                ElseIf k Mod 3 Then
+                End If
+                PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\rightstand.png"
+                PictureBox1.Left += 7
             End If
         ElseIf e.KeyCode = Keys.D Then
-            If PictureBox1.Right >= -55 Then
-                PictureBox1.Left -= 2
+            If PictureBox1.Right < 5855 And PictureBox1.Right > 0 Then
+                PictureBox1.Left -= 7
             End If
         End If
+        Label1.Text = PictureBox1.Right
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+
         appGame = New Game(instalLocation)
 
         'instalLocation = ""
         instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
 
     End Sub
+
+    Private Sub Form1_MouseMove(sender As Object, e As MouseEventArgs) Handles MyBase.MouseMove
+        MsgBox("00")
+    End Sub
+
+    Private Sub Form1_MouseHover(sender As Object, e As EventArgs) Handles MyBase.MouseHover
+
+    End Sub
+
+    Private Sub Form1_KeyUp(sender As Object, e As KeyEventArgs) Handles MyBase.KeyUp
+        If e.KeyCode = Keys.A Then
+            If PictureBox1.Right > -1 And PictureBox1.Right < 5854 Then
+                PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\LeftStanding.png"
+            End If
+        ElseIf e.KeyCode = Keys.D Then
+            If PictureBox1.Right < 5855 And PictureBox1.Right > 0 Then
+            End If
+        End If
+    End Sub
+
 
     Private Sub Form1_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove, PictureBox1.MouseMove
         Dim x As Single = e.Location.X
