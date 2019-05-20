@@ -91,7 +91,7 @@
             For i = 1 To 134
                 Dim temp(8) As Tile
                 For j = 1 To 9
-                    temp(j) = New Tile
+                    temp(j - 1) = New Tile
                 Next
                 x(i) = temp
             Next
@@ -139,7 +139,7 @@
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        game = New Game(instalLocation)
+        appGame = New Game(instalLocation)
 
         'instalLocation = ""
         instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
