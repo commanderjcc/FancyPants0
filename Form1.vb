@@ -1,6 +1,7 @@
 Imports System.IO
 
 Public Class Form1
+    Dim werty As Boolean
     Dim k As Integer, tmr As Integer
     Dim left As Boolean, right As Boolean
     Public instalLocation As String
@@ -231,7 +232,7 @@ Public Class Form1
 
     Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.A Then
-            If PictureBox1.Right > -1 And PictureBox1.Right < 5640 Then
+            If PictureBox1.Right > -1 And PictureBox1.Right < 4230 Then
                 left = True
                 PictureBox1.Left += 5
                 PictureBox2.Left -= 5
@@ -240,7 +241,7 @@ Public Class Form1
                 PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\LeftStanding.png"
             End If
         ElseIf e.KeyCode = Keys.D Then
-            If PictureBox1.Right <= 5640 And PictureBox1.Right > 0 Then
+            If PictureBox1.Right <= 4230 And PictureBox1.Right > 0 Then
                 right = True
                 PictureBox1.Left -= 5
                 PictureBox2.Left += 5
@@ -248,18 +249,24 @@ Public Class Form1
                 PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\Rightstanding.png"
                 right = False
             End If
+        ElseIf e.KeyCode = Keys.W Then
+            If PictureBox2.Top = 224 Then
+                Timer2.Start()
+                werty = True
+
+            End If
         Else
             left = False
             right = False
         End If
+
         Timer1.Start()
-        Label1.Text = PictureBox1.Right
+        Label4.Text = PictureBox2.Top
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         'appGame = New Game(instalLocation)
-
         'instalLocation = ""
         instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
         tmr = 1
@@ -268,7 +275,7 @@ Public Class Form1
             .Parent = PictureBox1
             .BackColor = Color.Transparent
         End With
-
+        PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\LeftStanding.png"
     End Sub
 
     Private Sub Form1_MouseHover(sender As Object, e As EventArgs) Handles MyBase.MouseHover
@@ -277,12 +284,12 @@ Public Class Form1
 
     Private Sub Form1_KeyUp(sender As Object, e As KeyEventArgs) Handles MyBase.KeyUp
         If e.KeyCode = Keys.A Then
-            If PictureBox1.Right > -1 And PictureBox1.Right < 5640 Then
+            If PictureBox1.Right > -1 And PictureBox1.Right < 4230 Then
                 left = False
                 PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\LeftStanding.png"
             End If
         ElseIf e.KeyCode = Keys.D Then
-            If PictureBox1.Right < 5640 And PictureBox1.Right > 0 Then
+            If PictureBox1.Right < 4230 And PictureBox1.Right > 0 Then
                 PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\Rightstanding.png"
                 right = False
             End If
@@ -293,7 +300,36 @@ Public Class Form1
 
     End Sub
 
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        If werty = False Then
+            PictureBox2.Top += 3
+            If left = True Then
+                PictureBox1.Left += 5
+                PictureBox2.Left -= 5
+            ElseIf right = True Then
+                PictureBox1.Left -= 5
+                PictureBox2.Left += 5
+            End If
+            If PictureBox2.Top = 224 Then
+                werty = True
+                Timer2.Stop()
+            End If
+        ElseIf werty = True Then
+            PictureBox2.Top -= 3
+            If left = True Then
+                PictureBox1.Left += 5
+                PictureBox2.Left -= 5
+            ElseIf right = True Then
+                PictureBox1.Left -= 5
+                PictureBox2.Left += 5
+            End If
+            If PictureBox2.Top <= 140 Then
+                werty = False
+            End If
 
+        End If
+        Label4.Text = PictureBox2.Top
+    End Sub
 
     Private Sub Form1_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove, PictureBox1.MouseMove
         Dim x As Single = e.Location.X
@@ -308,7 +344,7 @@ Public Class Form1
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-
+        Label4.Text = PictureBox2.Top
         Select Case tmr
             Case 1
                 If left = True Then
