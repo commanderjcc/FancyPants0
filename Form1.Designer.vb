@@ -42,10 +42,9 @@ Partial Class Form1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Courier New", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(12, 9)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Location = New System.Drawing.Point(9, 7)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(164, 46)
+        Me.Label1.Size = New System.Drawing.Size(129, 36)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Label1"
         '
@@ -59,6 +58,7 @@ Partial Class Form1
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox2.TabIndex = 2
         Me.PictureBox2.TabStop = False
+        Me.PictureBox2.WaitOnLoad = True
         '
         'PictureBox1
         '
@@ -76,9 +76,10 @@ Partial Class Form1
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Courier New", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(147, 9)
+        Me.Label2.Location = New System.Drawing.Point(110, 7)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(164, 46)
+        Me.Label2.Size = New System.Drawing.Size(129, 36)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Label2"
         '
@@ -86,24 +87,24 @@ Partial Class Form1
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Courier New", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(282, 9)
+        Me.Label3.Location = New System.Drawing.Point(212, 7)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(164, 46)
+        Me.Label3.Size = New System.Drawing.Size(129, 36)
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "Label3"
         '
         'Form1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(710, 352)
+        Me.ClientSize = New System.Drawing.Size(756, 352)
         Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.PictureBox1)
         Me.KeyPreview = True
-        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "Form1"
         Me.Text = "Form1"
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()

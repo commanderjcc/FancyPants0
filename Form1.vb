@@ -1,4 +1,6 @@
-﻿Public Class Form1
+Imports System.IO
+
+Public Class Form1
     Dim k As Integer, tmr As Integer
     Dim left As Boolean, right As Boolean
     Public instalLocation As String
@@ -65,6 +67,9 @@
             For i = 0 To 7
                 'player1sprites(i) = Image.FromFile(datalocation + "\sprites\player1\" + i.ToString + ".png")
                 'player2sprites(i) = Image.FromFile(datalocation + "\sprites\player2\" + i.ToString + ".png")
+                player1sprites(i) = Image.FromFile(datalocation + "\sprites\player1\" + Str(i) + ".png")
+                player2sprites(i) = Image.FromFile(datalocation + "\sprites\player2\" + Str(i) + ".png")
+
             Next
             player1 = New Player(player1sprites, 2, "player1")
             player2 = New Player(player2sprites, 2, "player2")
@@ -122,11 +127,18 @@
     Class Tile
         Public dimensions As dimensions
         Public isSolid As Boolean
+        Public points As Integer
+
+        Sub New(GridX As Integer, GridY As Integer, isSolid As Boolean, points As Integer)
+            dimensions = New dimensions(GridX * 27.8 + 13, GridY * 27.6)
+            Me.isSolid = isSolid
+            Me.points = points
+        End Sub
     End Class
 
     Class Map
         Public mapImage As Image
-        Public x(134) As Array
+        Public x(194) As Array
 
         Sub New(mapFolderLocation As String)
             Fill(mapFolderLocation + "\map.txt")
@@ -147,13 +159,39 @@
 
 
         Sub Fill(maplocation As String)
-            For i = 1 To 134
-                Dim temp(8) As Tile
-                For j = 1 To 9
-                    temp(j - 1) = New Tile
+            'For i = 0 To 194
+            '    Dim temp(14) As Tile
+            '    For j = 0 To 14
+            '        temp(j) = New Tile()
+            '    Next
+            '    x(i) = temp
+            'Next
+            Dim tempStr As String
+            Dim YblocksStr(14) As String
+            Dim Yblocks(14) As Tile
+            Dim numberOfTiles As Integer
+            Dim numberOfRows As Integer
+            Dim sr As New StreamReader(maplocation)
+            numberOfRows = 0
+            Do While Not sr.EndOfStream
+                numberOfTiles = 0
+                tempStr = sr.ReadLine
+                YblocksStr = tempStr.Split
+                For Each block In YblocksStr
+                    Select Case Trim(block)
+                        Case "S"
+                            Yblocks(numberOfTiles) = New Tile(numberOfRows, numberOfTiles, True, 0)
+                        Case "A"
+                            Yblocks(numberOfTiles) = New Tile(numberOfRows, numberOfTiles, False, 0)
+                        Case "P"
+                            Yblocks(numberOfTiles) = New Tile(numberOfRows, numberOfTiles, False, 1000)
+                        Case "Q"
+                            Yblocks(numberOfTiles) = New Tile(numberOfRows, numberOfTiles, True, 100)
+                    End Select
+                    numberOfTiles += 1
                 Next
-                x(i) = temp
-            Next
+                numberOfRows += 1
+            Loop
         End Sub
 
 
@@ -220,7 +258,7 @@
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        appGame = New Game(instalLocation)
+        'appGame = New Game(instalLocation)
 
         'instalLocation = ""
         instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
@@ -232,7 +270,6 @@
         End With
 
     End Sub
-
 
     Private Sub Form1_MouseHover(sender As Object, e As EventArgs) Handles MyBase.MouseHover
 
