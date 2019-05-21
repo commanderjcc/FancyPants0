@@ -56,7 +56,7 @@ Partial Class Form1
         Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
         Me.PictureBox2.InitialImage = Nothing
         Me.PictureBox2.Location = New System.Drawing.Point(153, 237)
-        Me.PictureBox2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PictureBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(28, 28)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -71,7 +71,7 @@ Partial Class Form1
         Me.PictureBox1.Location = New System.Drawing.Point(0, -1)
         Me.PictureBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(4230, 288)
+        Me.PictureBox1.Size = New System.Drawing.Size(5640, 355)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
@@ -102,7 +102,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(532, 286)
+        Me.ClientSize = New System.Drawing.Size(756, 352)
         Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
