@@ -256,7 +256,7 @@ Public Class Form1
                 left = False
             End If
         ElseIf e.KeyCode = Keys.W Then
-            If PictureBox2.Top = 273 Then
+            If appGame.engine.isYCollisionDown(appGame.data.player1) Then
                 Timer2.Start()
                 werty = True
 
@@ -271,8 +271,8 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        instalLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0"
-        'instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
+        'instalLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0"
+        instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
         appGame = New Game(instalLocation)
         tmr = 1
 
@@ -280,7 +280,7 @@ Public Class Form1
             .Parent = PictureBox1
             .BackColor = Color.Transparent
         End With
-        PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\LeftStanding.png"
+        PictureBox2.ImageLocation = instalLocation + "\sprites\LeftStanding.png"
     End Sub
 
     Private Sub Form1_MouseHover(sender As Object, e As EventArgs) Handles MyBase.MouseHover
@@ -308,26 +308,14 @@ Public Class Form1
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
         If werty = False Then
             PictureBox2.Top += 3
-            If left = True Then
-                PictureBox1.Left += 5
-                PictureBox2.Left -= 5
-            ElseIf right = True Then
-                PictureBox1.Left -= 5
-                PictureBox2.Left += 5
-            End If
-            If PictureBox2.Top = 273 Then
-                werty = True
+            appGame.data.player1.dimensions.y -= 3
+            If appGame.engine.isYCollisionDown(appGame.data.player1) Then
+                'werty = True
                 Timer2.Stop()
             End If
         ElseIf werty = True Then
             PictureBox2.Top -= 3
-            If left = True Then
-                PictureBox1.Left += 5
-                PictureBox2.Left -= 5
-            ElseIf right = True Then
-                PictureBox1.Left -= 5
-                PictureBox2.Left += 5
-            End If
+            appGame.data.player1.dimensions.y += 3
             If PictureBox2.Top <= 132 Then
                 werty = False
             End If
