@@ -69,7 +69,7 @@ Partial Class Form1
         Me.PictureBox1.Location = New System.Drawing.Point(0, -1)
         Me.PictureBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(7520, 437)
+        Me.PictureBox1.Size = New System.Drawing.Size(5640, 355)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
