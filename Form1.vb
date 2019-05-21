@@ -234,25 +234,29 @@ Public Class Form1
         If e.KeyCode = Keys.A Then
             If PictureBox1.Right > -1 And PictureBox1.Right < 5640 And Not appGame.engine.isXcollisionLeft(appGame.data.player1) Then
                 left = True
+                right = False
                 PictureBox1.Left += 5
                 PictureBox2.Left -= 5
                 appGame.data.player1.dimensions.x -= 5
             Else
                 left = False
+                right = False
                 PictureBox2.ImageLocation = instalLocation + "\sprites\LeftStanding.png"
             End If
         ElseIf e.KeyCode = Keys.D Then
             If PictureBox1.Right <= 5640 And PictureBox1.Right > 0 And Not appGame.engine.isXCollisionRight(appGame.data.player1) Then
                 right = True
+                left = False
                 PictureBox1.Left -= 5
                 PictureBox2.Left += 5
                 appGame.data.player1.dimensions.x += 5
             Else
                 PictureBox2.ImageLocation = instalLocation + "\sprites\Rightstanding.png"
                 right = False
+                left = False
             End If
         ElseIf e.KeyCode = Keys.W Then
-            If PictureBox2.Top = 224 Then
+            If PictureBox2.Top = 273 Then
                 Timer2.Start()
                 werty = True
 
@@ -263,12 +267,12 @@ Public Class Form1
         End If
 
         Timer1.Start()
-        Label4.Text = PictureBox2.Top
+        Label5.Text = PictureBox2.Top
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'instalLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0"
-        instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
+        instalLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0"
+        'instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
         appGame = New Game(instalLocation)
         tmr = 1
 
@@ -311,7 +315,7 @@ Public Class Form1
                 PictureBox1.Left -= 5
                 PictureBox2.Left += 5
             End If
-            If PictureBox2.Top = 224 Then
+            If PictureBox2.Top = 273 Then
                 werty = True
                 Timer2.Stop()
             End If
@@ -324,7 +328,7 @@ Public Class Form1
                 PictureBox1.Left -= 5
                 PictureBox2.Left += 5
             End If
-            If PictureBox2.Top <= 140 Then
+            If PictureBox2.Top <= 132 Then
                 werty = False
             End If
 
