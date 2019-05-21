@@ -219,6 +219,13 @@
 
     End Sub
 
+    Private Sub Form1_MouseMove(sender As Object, e As MouseEventArgs) Handles MyBase.MouseMove
+        MsgBox("00")
+    End Sub
+
+    Private Sub Form1_MouseHover(sender As Object, e As EventArgs) Handles MyBase.MouseHover
+
+    End Sub
 
     Private Sub Form1_KeyUp(sender As Object, e As KeyEventArgs) Handles MyBase.KeyUp
         If e.KeyCode = Keys.A Then
