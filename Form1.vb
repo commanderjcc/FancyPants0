@@ -1,4 +1,4 @@
-﻿Public Class Form1
+Public Class Form1
     Dim k As Integer, tmr As Integer
     Dim left As Boolean, right As Boolean
     Public instalLocation As String
@@ -63,8 +63,8 @@
         Sub New(datalocation As String)
             map = New Map(datalocation + "\map")
             For i = 0 To 7
-                player1sprites(i) = Image.FromFile(datalocation + "\sprites\player1\" + i + ".png")
-                player2sprites(i) = Image.FromFile(datalocation + "\sprites\player2\" + i + ".png")
+                player1sprites(i) = Image.FromFile(datalocation + "\sprites\player1\" + Str(i) + ".png")
+                player2sprites(i) = Image.FromFile(datalocation + "\sprites\player2\" + Str(i) + ".png")
             Next
             player1 = New Player(player1sprites, 2, "player1")
             player2 = New Player(player2sprites, 2, "player2")
@@ -212,7 +212,7 @@
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        appGame = New Game(instalLocation)
+        'appGame = New Game(instalLocation)
 
         'instalLocation = ""
         instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
@@ -224,10 +224,6 @@
             .BackColor = Color.Transparent
         End With
 
-    End Sub
-
-    Private Sub Form1_MouseMove(sender As Object, e As MouseEventArgs) Handles MyBase.MouseMove
-        MsgBox("00")
     End Sub
 
     Private Sub Form1_MouseHover(sender As Object, e As EventArgs) Handles MyBase.MouseHover
