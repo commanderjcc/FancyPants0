@@ -55,10 +55,10 @@ Partial Class Form1
         Me.PictureBox2.ErrorImage = Nothing
         Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
         Me.PictureBox2.InitialImage = Nothing
-        Me.PictureBox2.Location = New System.Drawing.Point(158, 202)
+        Me.PictureBox2.Location = New System.Drawing.Point(153, 237)
         Me.PictureBox2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(52, 63)
+        Me.PictureBox2.Size = New System.Drawing.Size(28, 28)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox2.TabIndex = 2
         Me.PictureBox2.TabStop = False
