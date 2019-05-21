@@ -30,6 +30,8 @@ Partial Class Form1
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.Label4 = New System.Windows.Forms.Label()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -53,10 +55,10 @@ Partial Class Form1
         '
         Me.PictureBox2.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.PictureBox2.Location = New System.Drawing.Point(0, 337)
-        Me.PictureBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PictureBox2.Location = New System.Drawing.Point(0, 276)
+        Me.PictureBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(1007, 65)
+        Me.PictureBox2.Size = New System.Drawing.Size(1008, 52)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox2.TabIndex = 2
         Me.PictureBox2.TabStop = False
@@ -94,18 +96,32 @@ Partial Class Form1
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "Label3"
         '
+        'Timer2
+        '
+        Me.Timer2.Interval = 25
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(599, 16)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(51, 17)
+        Me.Label4.TabIndex = 5
+        Me.Label4.Text = "Label4"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 433)
+        Me.ClientSize = New System.Drawing.Size(1008, 353)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.PictureBox1)
         Me.KeyPreview = True
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "Form1"
         Me.Text = "Form1"
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -121,4 +137,6 @@ Partial Class Form1
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
+    Friend WithEvents Timer2 As Timer
+    Friend WithEvents Label4 As Label
 End Class
