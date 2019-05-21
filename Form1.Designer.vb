@@ -36,6 +36,7 @@ Partial Class Form1
         '
         'Timer1
         '
+        Me.Timer1.Interval = 300
         '
         'Label1
         '
@@ -52,9 +53,9 @@ Partial Class Form1
         '
         Me.PictureBox2.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.PictureBox2.Location = New System.Drawing.Point(92, 399)
+        Me.PictureBox2.Location = New System.Drawing.Point(211, 249)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(59, 66)
+        Me.PictureBox2.Size = New System.Drawing.Size(70, 78)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox2.TabIndex = 2
         Me.PictureBox2.TabStop = False
