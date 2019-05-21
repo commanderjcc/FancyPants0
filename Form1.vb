@@ -276,7 +276,7 @@ Public Class Form1
             .Parent = PictureBox1
             .BackColor = Color.Transparent
         End With
-        PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\LeftStanding.png"
+        PictureBox2.ImageLocation = instalLocation + "\sprites\LeftStanding.png"
     End Sub
 
     Private Sub Form1_MouseHover(sender As Object, e As EventArgs) Handles MyBase.MouseHover
