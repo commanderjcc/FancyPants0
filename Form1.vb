@@ -64,15 +64,15 @@ Public Class Form1
 
         Sub New(datalocation As String)
             map = New Map(datalocation + "\map")
-            For i = 0 To 7
-                'player1sprites(i) = Image.FromFile(datalocation + "\sprites\player1\" + i.ToString + ".png")
-                'player2sprites(i) = Image.FromFile(datalocation + "\sprites\player2\" + i.ToString + ".png")
-                player1sprites(i) = Image.FromFile(datalocation + "\sprites\player1\" + Str(i) + ".png")
-                player2sprites(i) = Image.FromFile(datalocation + "\sprites\player2\" + Str(i) + ".png")
+            'For i = 0 To 7
+            '    'player1sprites(i) = Image.FromFile(datalocation + "\sprites\player1\" + i.ToString + ".png")
+            '    'player2sprites(i) = Image.FromFile(datalocation + "\sprites\player2\" + i.ToString + ".png")
+            '    player1sprites(i) = Image.FromFile(datalocation + "\sprites\player1\" + Trim(Str(i)) + ".png")
+            '    player2sprites(i) = Image.FromFile(datalocation + "\sprites\player2\" + Trim(Str(i)) + ".png")
 
-            Next
-            player1 = New Player(player1sprites, 2, "player1")
-            player2 = New Player(player2sprites, 2, "player2")
+            'Next
+            player1 = New Player(2, "player1")
+            player2 = New Player(2, "player2")
         End Sub
 
 
@@ -190,7 +190,7 @@ Public Class Form1
                     End Select
                     numberOfTiles += 1
                 Next
-                x(numberOfRows) = Yblocks
+                x(numberOfRows) = Yblocks.Clone
                 numberOfRows += 1
             Loop
         End Sub
@@ -206,8 +206,8 @@ Public Class Form1
         Inherits entity
         Public name As String
 
-        Sub New(images As Image(), health As Single, name As String)
-            MyBase.New(images, health, 0, New dimensions(152, 300, 45, 56))
+        Sub New(health As Single, name As String)
+            MyBase.New(health, 0, New dimensions(357, 300, 45, 56))
             Me.name = name
         End Sub
     End Class
@@ -222,8 +222,7 @@ Public Class Form1
 
         End Function
 
-        Public Sub New(images As Image(), health As Single, points As Single, dimensions As dimensions)
-            Me.images = images
+        Public Sub New(health As Single, points As Single, dimensions As dimensions)
             Me.health = health
             Me.points = points
             Me.dimensions = dimensions
@@ -232,21 +231,23 @@ Public Class Form1
 
     Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.A Then
-            If PictureBox1.Right > -1 And PictureBox1.Right < 5640 Then
+            If PictureBox1.Right > -1 And PictureBox1.Right < 5640 And Not appGame.engine.isXcollisionLeft(appGame.data.player1) Then
                 left = True
                 PictureBox1.Left += 5
                 PictureBox2.Left -= 5
+                appGame.data.player1.dimensions.x -= 5
             Else
                 left = False
-                PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\LeftStanding.png"
+                PictureBox2.ImageLocation = instalLocation + "\sprites\LeftStanding.png"
             End If
         ElseIf e.KeyCode = Keys.D Then
-            If PictureBox1.Right <= 5640 And PictureBox1.Right > 0 Then
+            If PictureBox1.Right <= 5640 And PictureBox1.Right > 0 And Not appGame.engine.isXCollisionRight(appGame.data.player1) Then
                 right = True
                 PictureBox1.Left -= 5
                 PictureBox2.Left += 5
+                appGame.data.player1.dimensions.x += 5
             Else
-                PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\Rightstanding.png"
+                PictureBox2.ImageLocation = instalLocation + "\sprites\Rightstanding.png"
                 right = False
             End If
         Else
@@ -258,11 +259,9 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-
-        'appGame = New Game(instalLocation)
-
-        'instalLocation = ""
+        'instalLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0"
         instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
+        appGame = New Game(instalLocation)
         tmr = 1
 
         With PictureBox2
@@ -280,12 +279,12 @@ Public Class Form1
         If e.KeyCode = Keys.A Then
             If PictureBox1.Right > -1 And PictureBox1.Right < 5640 Then
                 left = False
-                PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\LeftStanding.png"
+                PictureBox2.ImageLocation = instalLocation + "\sprites\LeftStanding.png"
             End If
         ElseIf e.KeyCode = Keys.D Then
             If PictureBox1.Right < 5640 And PictureBox1.Right > 0 Then
-                PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\Rightstanding.png"
                 right = False
+                PictureBox2.ImageLocation = instalLocation + "\sprites\Rightstanding.png"
             End If
         Else
 
@@ -309,21 +308,24 @@ Public Class Form1
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        If Not appGame.engine.isYCollisionDown(appGame.data.player1) Then
+            'MAKE PLAYER FALL
+        End If
 
         Select Case tmr
             Case 1
                 If left = True Then
-                    PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\left1walk.png"
+                    PictureBox2.ImageLocation = instalLocation + "\sprites\left1walk.png"
 
                 ElseIf right = True Then
-                    PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\right1walk.png"
+                    PictureBox2.ImageLocation = instalLocation + "\sprites\right1walk.png"
                 End If
                 tmr = tmr + 1
             Case 2
                 If left = True Then
-                    PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\left2walk.png"
+                    PictureBox2.ImageLocation = instalLocation + "\sprites\left2walk.png"
                 ElseIf right = True Then
-                    PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\right2walk.png"
+                    PictureBox2.ImageLocation = instalLocation + "\sprites\right2walk.png"
                 End If
                 tmr = 1
         End Select
