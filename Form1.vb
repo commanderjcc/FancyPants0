@@ -126,7 +126,7 @@ Public Class Form1
 
     Class Map
         Public mapImage As Image
-        Public x(134) As Array
+        Public x(194) As Array
 
         Sub New(mapFolderLocation As String)
             Fill(mapFolderLocation + "\map.txt")
