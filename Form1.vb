@@ -1,5 +1,6 @@
-﻿Public Class Form1
-    Dim k As Integer
+Public Class Form1
+    Dim k As Integer, tmr As Integer
+    Dim left As Boolean, right As Boolean
     Public instalLocation As String
     Public appGame As Game
     Public Structure dimensions
@@ -62,8 +63,8 @@
         Sub New(datalocation As String)
             map = New Map(datalocation + "\map")
             For i = 0 To 7
-                player1sprites(i) = Image.FromFile(datalocation + "\sprites\player1\" + i + ".png")
-                player2sprites(i) = Image.FromFile(datalocation + "\sprites\player2\" + i + ".png")
+                player1sprites(i) = Image.FromFile(datalocation + "\sprites\player1\" + Str(i) + ".png")
+                player2sprites(i) = Image.FromFile(datalocation + "\sprites\player2\" + Str(i) + ".png")
             Next
             player1 = New Player(player1sprites, 2, "player1")
             player2 = New Player(player2sprites, 2, "player2")
@@ -193,34 +194,36 @@
     Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.A Then
             If PictureBox1.Right > -1 And PictureBox1.Right < 4230 Then
-                k = k + 1
-                If k Mod 2 = 0 Then
-                    PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\rightstand.png"
-
-                ElseIf k Mod 3 Then
-                End If
-                PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\rightstand.png"
+                left = True
                 PictureBox1.Left += 5
             End If
         ElseIf e.KeyCode = Keys.D Then
             If PictureBox1.Right <= 4230 And PictureBox1.Right > 0 Then
+                right = True
                 PictureBox1.Left -= 5
             End If
+        Else
+            left = False
+            right = False
         End If
+        Timer1.Start()
         Label1.Text = PictureBox1.Right
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        appGame = New Game(instalLocation)
+        'appGame = New Game(instalLocation)
 
         'instalLocation = ""
         instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
+        tmr = 1
 
-    End Sub
+        With PictureBox2
 
-    Private Sub Form1_MouseMove(sender As Object, e As MouseEventArgs) Handles MyBase.MouseMove
-        MsgBox("00")
+            .SizeMode = PictureBoxSizeMode.AutoSize
+            .BackColor = Color.Transparent
+        End With
+
     End Sub
 
     Private Sub Form1_MouseHover(sender As Object, e As EventArgs) Handles MyBase.MouseHover
@@ -230,12 +233,19 @@
     Private Sub Form1_KeyUp(sender As Object, e As KeyEventArgs) Handles MyBase.KeyUp
         If e.KeyCode = Keys.A Then
             If PictureBox1.Right > -1 And PictureBox1.Right < 4230 Then
-
+                left = False
+                PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\LeftStanding.png"
             End If
         ElseIf e.KeyCode = Keys.D Then
             If PictureBox1.Right < 4230 And PictureBox1.Right > 0 Then
+                PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\Rightstanding.png"
+                right = False
             End If
+        Else
+
+
         End If
+
     End Sub
 
 
@@ -253,7 +263,26 @@
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\LeftStanding.png"
+
+        Select Case tmr
+            Case 1
+                If left = True Then
+                    PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\left1walk.png"
+
+                ElseIf right = True Then
+                    PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\right1walk.png"
+                End If
+                tmr = tmr + 1
+            Case 2
+                If left = True Then
+                    PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\left2walk.png"
+                ElseIf right = True Then
+                    PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\right2walk.png"
+                End If
+                tmr = 1
+        End Select
+
+
     End Sub
 End Class
 
