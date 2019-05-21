@@ -4,17 +4,13 @@
     Public instalLocation As String
     Public appGame As Game
     Public Structure dimensions
-        Public x As Single, y As Single, width As Single, height As Integer, xGrid As Integer, yGrid As Single, xLast As Single, yLast As Single
+        Public x As Single, y As Single, width As Single, height As Integer
 
-        Sub New(x As Single, y As Single, xGrid As Integer, yGrid As Integer)
+        Sub New(x As Single, y As Single)
             Me.x = x
             Me.y = y
-            width = 100
-            height = 100
-            Me.xGrid = xGrid
-            Me.yGrid = yGrid
-            Me.xLast = 0
-            Me.yLast = 0
+            width = 27.8
+            height = 27.6
         End Sub
 
         Sub New(x, y, width, height)
@@ -66,7 +62,12 @@
 
         Sub New(datalocation As String)
             map = New Map(datalocation + "\map")
-
+            For i = 0 To 7
+                player1sprites(i) = Image.FromFile(datalocation + "\sprites\player1\" + i + ".png")
+                player2sprites(i) = Image.FromFile(datalocation + "\sprites\player2\" + i + ".png")
+            Next
+            player1 = New Player(player1sprites, 2, "player1")
+            player2 = New Player(player2sprites, 2, "player2")
         End Sub
 
 
@@ -225,6 +226,13 @@
 
     End Sub
 
+    Private Sub Form1_MouseMove(sender As Object, e As MouseEventArgs) Handles MyBase.MouseMove
+        MsgBox("00")
+    End Sub
+
+    Private Sub Form1_MouseHover(sender As Object, e As EventArgs) Handles MyBase.MouseHover
+
+    End Sub
 
     Private Sub Form1_KeyUp(sender As Object, e As KeyEventArgs) Handles MyBase.KeyUp
         If e.KeyCode = Keys.A Then
