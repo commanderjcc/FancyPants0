@@ -190,6 +190,7 @@ Public Class Form1
                     End Select
                     numberOfTiles += 1
                 Next
+                x(numberOfRows) = Yblocks
                 numberOfRows += 1
             Loop
         End Sub
