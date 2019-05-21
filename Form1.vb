@@ -63,8 +63,8 @@
         Sub New(datalocation As String)
             map = New Map(datalocation + "\map")
             For i = 0 To 7
-                player1sprites(i) = Image.FromFile(datalocation + "\sprites\player1\" + i + ".png")
-                player2sprites(i) = Image.FromFile(datalocation + "\sprites\player2\" + i + ".png")
+                'player1sprites(i) = Image.FromFile(datalocation + "\sprites\player1\" + i.ToString + ".png")
+                'player2sprites(i) = Image.FromFile(datalocation + "\sprites\player2\" + i.ToString + ".png")
             Next
             player1 = New Player(player1sprites, 2, "player1")
             player2 = New Player(player2sprites, 2, "player2")
@@ -196,11 +196,19 @@
             If PictureBox1.Right > -1 And PictureBox1.Right < 4230 Then
                 left = True
                 PictureBox1.Left += 5
+                PictureBox2.Left -= 5
+            Else
+                left = False
+                PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\LeftStanding.png"
             End If
         ElseIf e.KeyCode = Keys.D Then
             If PictureBox1.Right <= 4230 And PictureBox1.Right > 0 Then
                 right = True
                 PictureBox1.Left -= 5
+                PictureBox2.Left += 5
+            Else
+                PictureBox2.ImageLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0\sprites\Rightstanding.png"
+                right = False
             End If
         Else
             left = False
@@ -219,16 +227,12 @@
         tmr = 1
 
         With PictureBox2
-
-            .SizeMode = PictureBoxSizeMode.AutoSize
+            .Parent = PictureBox1
             .BackColor = Color.Transparent
         End With
 
     End Sub
 
-    Private Sub Form1_MouseMove(sender As Object, e As MouseEventArgs) Handles MyBase.MouseMove
-        MsgBox("00")
-    End Sub
 
     Private Sub Form1_MouseHover(sender As Object, e As EventArgs) Handles MyBase.MouseHover
 
