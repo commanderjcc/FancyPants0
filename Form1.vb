@@ -281,8 +281,8 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        instalLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0"
-        'instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
+        'instalLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0"
+        instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
         appGame = New Game(instalLocation)
         tmr = 1
         My.Computer.Audio.Play(instalLocation + "\SuperMarioBros.wav", AudioPlayMode.BackgroundLoop)
@@ -357,6 +357,13 @@ Public Class Form1
         'End If
         Label1.Text = Math.Floor(appGame.data.player1.dimensions.x)
         Label4.Text = PictureBox2.Top
+
+        If appGame.data.player1.dimensions.x > 5000 Then
+            Timer1.Stop()
+            MsgBox("YOU WIN! Your score was: " + Str(appGame.data.player1.dimensions.x * 1.23))
+        End If
+
+
         Select Case tmr
             Case 1
                 If left = True Then
