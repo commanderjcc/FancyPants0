@@ -257,6 +257,7 @@ Public Class Form1
             End If
         ElseIf e.KeyCode = Keys.W Then
             If appGame.engine.isYCollisionDown(appGame.data.player1) Then
+                My.Computer.Audio.Play(instalLocation + "\mario_04.wav")
                 Timer2.Start()
                 werty = True
 
@@ -275,6 +276,8 @@ Public Class Form1
         instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
         appGame = New Game(instalLocation)
         tmr = 1
+        My.Computer.Audio.Play(instalLocation + "\SuperMarioBros.wav", AudioPlayMode.BackgroundLoop)
+
 
         With PictureBox2
             .Parent = PictureBox1
@@ -306,6 +309,7 @@ Public Class Form1
     End Sub
 
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+
         If werty = False Then
             PictureBox2.Top += 3
             appGame.data.player1.dimensions.y += 3
@@ -338,9 +342,9 @@ Public Class Form1
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         If Not appGame.engine.isYCollisionDown(appGame.data.player1) Then
-            'MAKE PLAYER FALL
+            'PictureBox2.Top += 3
+            'appGame.data.player1.dimensions.y += 3
         End If
-
         Label4.Text = PictureBox2.Top
         Select Case tmr
             Case 1
