@@ -85,6 +85,7 @@ Partial Class Form1
         Me.Label2.Size = New System.Drawing.Size(129, 36)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Label2"
+        Me.Label2.Visible = False
         '
         'Label3
         '
@@ -96,6 +97,7 @@ Partial Class Form1
         Me.Label3.Size = New System.Drawing.Size(129, 36)
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "Label3"
+        Me.Label3.Visible = False
         '
         'Timer2
         '
@@ -119,6 +121,7 @@ Partial Class Form1
         Me.Label5.Size = New System.Drawing.Size(39, 13)
         Me.Label5.TabIndex = 5
         Me.Label5.Text = "Label5"
+        Me.Label5.Visible = False
         '
         'Form1
         '
