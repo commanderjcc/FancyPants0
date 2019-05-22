@@ -1,7 +1,7 @@
 Imports System.IO
 
 Public Class Form1
-    Dim werty As Boolean
+    Dim werty As Boolean, jump As Boolean
     Dim k As Integer, tmr As Integer
     Dim left As Boolean, right As Boolean
     Public instalLocation As String
@@ -238,6 +238,10 @@ Public Class Form1
                 PictureBox1.Left += 5
                 PictureBox2.Left -= 5
                 appGame.data.player1.dimensions.x -= 5
+                If Not appGame.engine.isYCollisionDown(appGame.data.player1) And jump = False Then
+                    werty = False
+                    Timer2.Start()
+                End If
             Else
                 left = False
                 right = False
@@ -250,6 +254,10 @@ Public Class Form1
                 PictureBox1.Left -= 5
                 PictureBox2.Left += 5
                 appGame.data.player1.dimensions.x += 5
+                If Not appGame.engine.isYCollisionDown(appGame.data.player1) And jump = False Then
+                    werty = False
+                    Timer2.Start()
+                End If
             Else
                 PictureBox2.ImageLocation = instalLocation + "\sprites\Rightstanding.png"
                 right = False
@@ -260,6 +268,7 @@ Public Class Form1
                 My.Computer.Audio.Play(instalLocation + "\mario_04.wav", AudioPlayMode.Background)
                 Timer2.Start()
                 werty = True
+                jump = True
 
             End If
         Else
@@ -272,13 +281,13 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'instalLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0"
-        instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
+        instalLocation = "C:\Users\Saima\Documents\GitHub\FancyPants0\FancyPants0"
+        'instalLocation = "D:\Documents\Schoolwork\Computer Programing 2\VB.NET\FancyPants0"
         appGame = New Game(instalLocation)
         tmr = 1
         My.Computer.Audio.Play(instalLocation + "\SuperMarioBros.wav", AudioPlayMode.BackgroundLoop)
 
-
+        jump = True
         With PictureBox2
             .Parent = PictureBox1
             .BackColor = Color.Transparent
@@ -317,6 +326,7 @@ Public Class Form1
                 'werty = True
                 Timer2.Stop()
             End If
+            jump = False
         ElseIf werty = True Then
             PictureBox2.Top -= 3
             appGame.data.player1.dimensions.y -= 3
