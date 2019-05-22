@@ -208,7 +208,7 @@ Public Class Form1
         Public name As String
 
         Sub New(health As Single, name As String)
-            MyBase.New(health, 0, New dimensions(357, 300, 45, 56))
+            MyBase.New(health, 0, New dimensions(357, 300, 15, 27.6))
             Me.name = name
         End Sub
     End Class
@@ -234,25 +234,29 @@ Public Class Form1
         If e.KeyCode = Keys.A Then
             If PictureBox1.Right > -1 And PictureBox1.Right < 5640 And Not appGame.engine.isXcollisionLeft(appGame.data.player1) Then
                 left = True
+                right = False
                 PictureBox1.Left += 5
                 PictureBox2.Left -= 5
                 appGame.data.player1.dimensions.x -= 5
             Else
                 left = False
+                right = False
                 PictureBox2.ImageLocation = instalLocation + "\sprites\LeftStanding.png"
             End If
         ElseIf e.KeyCode = Keys.D Then
             If PictureBox1.Right <= 5640 And PictureBox1.Right > 0 And Not appGame.engine.isXCollisionRight(appGame.data.player1) Then
                 right = True
+                left = False
                 PictureBox1.Left -= 5
                 PictureBox2.Left += 5
                 appGame.data.player1.dimensions.x += 5
             Else
                 PictureBox2.ImageLocation = instalLocation + "\sprites\Rightstanding.png"
                 right = False
+                left = False
             End If
         ElseIf e.KeyCode = Keys.W Then
-            If PictureBox2.Top = 224 Then
+            If appGame.engine.isYCollisionDown(appGame.data.player1) Then
                 Timer2.Start()
                 werty = True
 
@@ -263,7 +267,7 @@ Public Class Form1
         End If
 
         Timer1.Start()
-        Label4.Text = PictureBox2.Top
+        Label5.Text = PictureBox2.Top
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -304,27 +308,15 @@ Public Class Form1
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
         If werty = False Then
             PictureBox2.Top += 3
-            If left = True Then
-                PictureBox1.Left += 5
-                PictureBox2.Left -= 5
-            ElseIf right = True Then
-                PictureBox1.Left -= 5
-                PictureBox2.Left += 5
-            End If
-            If PictureBox2.Top = 224 Then
-                werty = True
+            appGame.data.player1.dimensions.y += 3
+            If appGame.engine.isYCollisionDown(appGame.data.player1) Then
+                'werty = True
                 Timer2.Stop()
             End If
         ElseIf werty = True Then
             PictureBox2.Top -= 3
-            If left = True Then
-                PictureBox1.Left += 5
-                PictureBox2.Left -= 5
-            ElseIf right = True Then
-                PictureBox1.Left -= 5
-                PictureBox2.Left += 5
-            End If
-            If PictureBox2.Top <= 140 Then
+            appGame.data.player1.dimensions.y -= 3
+            If PictureBox2.Top <= 132 Then
                 werty = False
             End If
 
@@ -341,7 +333,7 @@ Public Class Form1
         centerY = Math.Floor((355 - y) / 27.6)
         Label1.Text = centerX
         Label2.Text = centerY
-        Label3.Text = x
+        Label3.Text = y
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
