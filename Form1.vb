@@ -208,7 +208,7 @@ Public Class Form1
         Public name As String
 
         Sub New(health As Single, name As String)
-            MyBase.New(health, 0, New dimensions(357, 300, 45, 56))
+            MyBase.New(health, 0, New dimensions(357, 300, 15, 27.6))
             Me.name = name
         End Sub
     End Class
@@ -308,14 +308,14 @@ Public Class Form1
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
         If werty = False Then
             PictureBox2.Top += 3
-            appGame.data.player1.dimensions.y -= 3
+            appGame.data.player1.dimensions.y += 3
             If appGame.engine.isYCollisionDown(appGame.data.player1) Then
                 'werty = True
                 Timer2.Stop()
             End If
         ElseIf werty = True Then
             PictureBox2.Top -= 3
-            appGame.data.player1.dimensions.y += 3
+            appGame.data.player1.dimensions.y -= 3
             If PictureBox2.Top <= 132 Then
                 werty = False
             End If
@@ -333,7 +333,7 @@ Public Class Form1
         centerY = Math.Floor((355 - y) / 27.6)
         Label1.Text = centerX
         Label2.Text = centerY
-        Label3.Text = x
+        Label3.Text = y
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
